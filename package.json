@@ -1,0 +1,30 @@
+{
+  "name": "authbackend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": " env-cmd -f ./config/dev.env  nodemon  ./index.js -e js,env",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.895.0",
+    "bcrypt": "^5.1.0",
+    "body-parser": "^1.20.1",
+    "chalk": "^2.4.1",
+    "connect-redis": "^6.1.3",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "env-cmd": "^10.1.0",
+    "express": "^4.18.1",
+    "express-session": "^1.17.3",
+    "mongoose": "^6.6.0",
+    "multer": "^1.4.2",
+    "multer-s3": "^2.9.0",
+    "nodemon": "^2.0.19",
+    "redis": "^4.3.1",
+    "uuid": "^9.0.0"
+  }
+}
