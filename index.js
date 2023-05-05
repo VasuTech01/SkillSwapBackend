@@ -5,6 +5,8 @@ const cors = require("cors");
 const { connectDB } = require("./DB/connect");
 const userRouter = require("./routers/User/Auth");
 const projectRouter = require("./routers/User/User");
+const postRouter = require("./routers/User/Post");
+const { projectRef } = require("./DB/FireBase");
 const { setVal, getVal } = require("./middlewares/UserTrack");
 (async () => {
   const check = await connectDB();
@@ -27,15 +29,20 @@ app.use(express.json());
 // }));
 
 app.get("/",async (req, res) => {
-  // console.log(req.headers["user-agent"]);
-  // console.log(req.ip);
- // console.log(await setVal(req.ip, req.headers["user-agent"]));
-  console.log(await getVal(req.ip));
-  res.setHeader("Set-Cookie", `${req.ip}=${req.headers["user-agent"]}`);
-  res.send("<center><h1>Hellow World</h1></center>");
+   
+  try {
+    const snapshot = await projectRef.doc("AQX5xwWUfz8DMVo0z9XQ").delete();
+    console.log(snapshot);
+    res.send("<center><h1>Hellow World</h1></center>");
+  } catch (e) {
+    
+  }
+ 
+  
 });
 app.use(userRouter);
 app.use(projectRouter);
+app.use(postRouter);
 
 app.listen(port, async () => {
   console.log("listening on port " + port);

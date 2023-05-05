@@ -16,7 +16,7 @@ router.put("/user/signup", async (req, res) => {
         console.log(e.message);
         res.status(500).send(e.message);
     }
-})
+});
 router.get("/user/signin", async (req, res) => {
     const body = req.body;
     console.log(req);
@@ -50,10 +50,10 @@ router.post("/user/avatar", upload.single("avatar"), async (req, res) => {
         }
         user.avatar = req.file.location;
         await user.save();
-        res.status(200).send(user.location);
+        res.status(200).send({avatar:user.avatar});
     }
     catch (e) {
-        res.status(500).send(e);
+        res.status(500).send(e.message);
     }
 })
 router.get("/user/avatar/:id", async (req, res) => {

@@ -22,14 +22,14 @@ const upload = multer({
 
 
 const DeleteObjects = async (files) => {
-    const objects = files.map(k => { return  { Key: k.key } });
+    const objects = files.map(k => { return { Key: k.key } });
     console.log(objects);
-    try{
+    try {
         const result = await s3.deleteObjects({ Bucket: process.env.bucket_name, Delete: { Objects: objects } }).promise();
-        console.log(result);  
+        console.log(result);
     } catch (e) {
         console.log(e);
-     }   
-    
+    }
+
 }
-module.exports = { upload,DeleteObjects };
+module.exports = { upload, DeleteObjects };

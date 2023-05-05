@@ -14,6 +14,11 @@ const connectClient = function () {
     try {
       console.log(chalk.bold.yellow("Connecting to redis...."));
       await client.connect();
+      client.on("error", async (e) => {
+        console.log(chalk.bold.red("Redis connection error",e));
+        //await client.connect();
+        
+      })
       console.log(chalk.bold.green("Redis Client Ready"));
       resolve(true);
     } catch (e) {

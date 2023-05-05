@@ -5,6 +5,10 @@ const ProjectSchema = new Schema({
         type: String,
         required: true,
     },
+    closed: {
+        type: Boolean,
+        default: false,
+    },
     description: {
         type: String,
         required: true,
@@ -21,32 +25,17 @@ const ProjectSchema = new Schema({
         type: Schema.Types.ObjectID,
         ref: "User"
     },
+    remote: {
+         type:Boolean
+    },
+    paid: {
+        type: Boolean,
+        default:false
+    },
     files: [{
-        filename: {
-            type: String,
-            trim: true,
-            lowercase: true
-        },
-        originalname: {
-            type: String,
-        },
-        encoding: {
-            type:String
-        },
-        mimetype: {
-            type:String
-        },
-        location: {
-            type:String,
-        },
-        etag: {
-           type:String, 
-        },
-        size: {
-            type:Number,
-        }
+        type: Schema.Types.ObjectID,
+        ref: "Files",
     }]
-
 }, { timestamps: true });
 
 const Project = mongoose.model("Project", ProjectSchema);
