@@ -56,9 +56,9 @@ router.get("/projects/:id", async (req, res) => {
         const project = await Project.find({ _id: id });
         console.log(project);
         const resp1 = await project[0].populate("user_id");
-        const resp2 = await resp1.populate("files");
-        console.log(resp2);
-        res.status(200).send(resp2);
+        const resp2 = await project[0].populate("files");
+        console.log(project[0]);
+        res.status(200).send(project[0]);
     } catch (e) {
         res.status(500).send(e);
     }
